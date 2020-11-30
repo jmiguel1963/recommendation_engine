@@ -1,18 +1,24 @@
 import pandas as pd
 from flask import Flask,request, render_template,url_for
+from flask_cors import CORS
 
+#loading csv into dataframe
 df=pd.read_csv('recommendation.csv',low_memory=False)
 
-app = Flask(__name__) 
+app = Flask(__name__)
+CORS(app) 
 
+#home page
 @app.route('/')
 def index():
     return render_template("index.html") 
+
 #product code introduction
 @app.route('/introduction')
 def introduction():
     product_list=df['Product'].values.tolist()
     return render_template("introduction.html",product_list=product_list) 
+
 #similar products recommendation (web)
 @app.route('/recommend',methods=['POST'])
 def recommend():
