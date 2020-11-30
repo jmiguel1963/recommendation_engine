@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <p>Selected Product</p>
+        <ul class="list-group">
+            <li class="list-group-item bg-transparent border-0"> {{initial_value}}</li>
+        </ul>
+        <p></p>
+        <p>Similar products</p>
+        <ul class="list-group">
+            {% for product in values %}
+            <li class="list-group-item bg-transparent border-0"> {{product}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
